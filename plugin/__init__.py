@@ -7,8 +7,9 @@ Wires one behaviour via the Hermes plugin system:
     hints into the user message as natural-language instructions.
 
 Modes:
-    Borrow-mode (default): Uses the agent's active LLM via ctx.llm.complete().
-    Zero additional API keys or cost.
+    Borrow-mode (default): Uses Hermes' active LLM credentials for the
+    retrieval gate. Reads OPENAI_API_KEY / OPENAI_BASE_URL / OPENAI_MODEL
+    from the environment. Zero additional configuration.
 
 Quirks:
     - pre_llm_call context is PREPENDED to the user message, not the system prompt.
@@ -18,6 +19,8 @@ Quirks:
 
 Env:
     SKILL_RETRIEVER_DISABLE=1        — disable entirely
+    SKILL_RETRIEVER_LLM_MODEL        — override LLM model (default: gpt-4o)
+    SKILL_RETRIEVER_CACHE_DIR        — override cache dir (default: ~/.hermes/skill-retriever-cache)
 """
 
 from __future__ import annotations
@@ -38,12 +41,12 @@ if str(_src_dir) not in sys.path:
     sys.path.insert(0, str(_src_dir))
 
 # Lazy-loaded singletons
-_retriever = None
+_searcher = None
 _scanner = None
 
 
 def _get_scanner():
-    """Lazy-load the skill scanner."""
+    """Lazy-load the skill scanner function."""
     global _scanner
     if _scanner is None:
         from skill_scanner import scan_hermes_skills
@@ -51,80 +54,126 @@ def _get_scanner():
     return _scanner
 
 
-def _get_retriever():
-    """Lazy-load the SkillRetriever singleton."""
-    global _retriever
-    if _retriever is None:
-        from skill_retriever import SkillRetriever
-        _retriever = SkillRetriever()
-    return _retriever
+def _get_searcher():
+    """Lazy-load the Searcher singleton from skill_retriever.
+
+    On first call, initializes the Searcher with the capability tree
+    and loads skill metadata. The tree is built once and cached to disk.
+
+    LLM credentials are read from the environment (borrow-mode):
+        OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_MODEL
+    or the skill-retriever-specific env vars:
+        SKILL_RETRIEVER_LLM_API_KEY, SKILL_RETRIEVER_LLM_BASE_URL,
+        SKILL_RETRIEVER_LLM_MODEL
+    """
+    global _searcher
+    if _searcher is not None:
+        return _searcher
+
+    from skill_retriever.search.searcher import Searcher
+    from skill_retriever.config import CAPABILITY_TREE_PATH
+
+    # Use the pre-built tree from skill_retriever/data or fall back to
+    # the bundled tree in the retriever package.
+    tree_path = os.environ.get(
+        "SKILL_RETRIEVER_TREE_PATH",
+        str(CAPABILITY_TREE_PATH),
+    )
+
+    model = os.environ.get(
+        "SKILL_RETRIEVER_LLM_MODEL",
+        os.environ.get("OPENAI_MODEL", "gpt-4o"),
+    )
+    api_key = os.environ.get(
+        "SKILL_RETRIEVER_LLM_API_KEY",
+        os.environ.get("OPENAI_API_KEY", ""),
+    )
+    base_url = os.environ.get(
+        "SKILL_RETRIEVER_LLM_BASE_URL",
+        os.environ.get("OPENAI_BASE_URL", None),
+    )
+
+    logger.info(
+        "skill-retriever: initializing searcher (model=%s, tree=%s)",
+        model, tree_path,
+    )
+
+    try:
+        _searcher = Searcher(
+            tree_path=tree_path,
+            model=model,
+            api_key=api_key,
+            base_url=base_url,
+        )
+    except Exception as e:
+        logger.warning(
+            "skill-retriever: failed to initialize searcher: %s. "
+            "Skill hints will be disabled.",
+            e,
+        )
+        _searcher = None
+
+    return _searcher
 
 
-def _on_pre_llm_call(*, user_message: str = "", ctx=None, **_kwargs) -> dict | None:
+def _on_pre_llm_call(*, user_message: str = "", **_kwargs) -> dict | None:
     """Run skill retrieval and inject hints into the user message.
 
-    This hook fires before every LLM turn. We run the retrieval pipeline
-    and, if confident results are found, prepend a natural-language hint
-    block to the user message telling the LLM which skills may help.
-
-    The LLM retains final authority — it can load suggested skills via
-    skill_view(name) or ignore the hint entirely.
+    This hook fires before every LLM turn. We run the AgentSkillOS
+    retrieval pipeline and, if confident results are found, prepend
+    a natural-language hint block telling the LLM which skills may help.
     """
     if os.environ.get(_DISABLE_ENV, "").lower() in ("1", "true", "yes"):
         return None
     if not user_message or not user_message.strip():
         return None
+    # Skip very short queries — they're usually greetings or follow-ups
+    if len(user_message.strip()) < 10:
+        return None
 
     try:
-        retriever = _get_retriever()
-        scanner = _get_scanner()
-
-        # Ensure index is built (first call builds, subsequent calls are cached)
-        skills = scanner()
-        if not skills:
-            logger.debug("skill-retriever: no skills found, skipping")
+        searcher = _get_searcher()
+        if searcher is None:
             return None
 
-        retriever.ensure_index(skills)
+        # Run the multi-level tree search
+        result = searcher.search(user_message)
 
-        # Run retrieval — gets top-5 skill names with relevance scores
-        results = retriever.search(user_message, top_k=5)
-
-        if not results:
-            logger.debug("skill-retriever: no results for query")
+        if not result or not result.selected_skills:
+            logger.debug(
+                "skill-retriever: no skills found for query (llm_calls=%d)",
+                result.llm_calls if result else 0,
+            )
             return None
 
-        # Format as natural-language hints the LLM can act on
-        hint = _format_hint(results)
-        return {"context": hint}
+        # Format as natural-language hints
+        hints = []
+        for skill in result.selected_skills[:5]:
+            name = skill.get("name", skill.get("id", "unknown"))
+            desc = skill.get("description", "")
+            hints.append(f"{len(hints)+1}. **{name}** — {desc}")
+
+        if not hints:
+            return None
+
+        hint_block = (
+            "[Skill Retrieval Hint]\n"
+            "The following skills were semantically matched to this query.\n"
+            "If any seem useful, call skill_view('<name>') to load it.\n"
+            "If none apply, ignore this hint entirely.\n\n"
+            + "\n".join(hints)
+            + "\n"
+        )
+
+        logger.info(
+            "skill-retriever: injected %d skill hints (llm_calls=%d)",
+            len(hints), result.llm_calls,
+        )
+        return {"context": hint_block}
 
     except Exception as e:
         logger.debug("skill-retriever hook failed (non-fatal): %s", e)
         return None
-
-
-def _format_hint(results: list) -> str:
-    """Format retrieval results as a context block for the user message.
-
-    We inject natural-language instructions because pre_llm_call context
-    is prepended to the user message, NOT the system prompt. The LLM
-    must decide to call skill_view() itself.
-    """
-    lines = [
-        "[System — Skill Retrieval Hint]",
-        "The following skills were found to be relevant to this query.",
-        "If any seem useful, call skill_view('<name>') to load its full instructions.",
-        "If none apply, ignore this hint entirely.",
-        "",
-    ]
-    for i, r in enumerate(results, 1):
-        name = r.get("name", "unknown")
-        desc = r.get("description", "")
-        score = r.get("score", 0)
-        lines.append(f"{i}. **{name}** (relevance: {score:.2f}) — {desc}")
-
-    lines.append("")
-    return "\n".join(lines)
 
 
 def register(ctx) -> None:
