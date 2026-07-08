@@ -52,6 +52,18 @@ jobs:
           import sys; sys.path.insert(0, 'src')
           from skill_retriever import Searcher, SearchResult, TreeNode, Skill
           from skill_retriever.tree.builder import TreeBuilder
-          from skill_scanner import scan_hermes_skills
+          from skill_retriever._scanner_plugin import scan_hermes_skills
           print('All core imports OK')
+          "
+
+      - name: Verify tree loads
+        run: |
+          python -c "
+          import sys; sys.path.insert(0, 'src')
+          from skill_retriever.search.searcher import Searcher
+          s = Searcher()
+          t = s._load_tree()
+          assert t is not None, 'Tree failed to load'
+          assert t.count_all_skills() > 0, 'Tree has no skills'
+          print(f'Tree OK: {t.count_all_skills()} skills')
           "

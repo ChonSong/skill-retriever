@@ -56,7 +56,7 @@ __all__ = [
 
 # ===== Module-specific Configuration =====
 MODULE_DIR = Path(__file__).parent
-CAPABILITY_TREE_PATH = MODULE_DIR / "capability_tree" / "tree.yaml"
+CAPABILITY_TREE_PATH = MODULE_DIR / "capability_tree" / "tree_10000.yaml"
 
 # Whether to enable adaptive layer selection based on tree size
 ADAPTIVE_SEARCH_ENABLED = True

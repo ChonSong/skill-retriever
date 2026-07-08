@@ -30,6 +30,7 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/skill_retriever", "plugin"]
+artifacts = ["src/skill_retriever/capability_tree/tree_10000.yaml"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "src/config.py" = "skill_retriever/_config_plugin.py"

@@ -38,7 +38,7 @@ from ..tree.prompts import NODE_SELECTION_PROMPT, SKILL_SELECTION_PROMPT, SKILL_
 console = Console()
 
 # Default tree path
-DEFAULT_TREE_PATH = Path(__file__).parent.parent / "capability_tree" / "tree.yaml"
+DEFAULT_TREE_PATH = Path(__file__).parent.parent / "capability_tree" / "tree_10000.yaml"
 
 # Event callback type: (event_type: str, data: dict) -> None
 EventCallback = Callable[[str, dict], None]

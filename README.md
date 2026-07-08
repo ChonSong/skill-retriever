@@ -2,7 +2,7 @@
 
 > **AgentSkillOS-powered semantic skill retrieval for Hermes Agent.**
 
-Pre-filters 1,650+ skills to the top-5 most relevant per query. Runs as a Hermes `pre_llm_call` plugin — zero core modification, zero additional API cost (borrows your existing Hermes LLMs via borrow-mode).
+Pre-filters **1,200+ skills** (998 community corpus + 200 Hermes skills) organized in a **10,000-category capability taxonomy** to the top-5 most relevant per query. Runs as a Hermes `pre_llm_call` plugin — zero core modification, zero additional API cost (borrows your existing Hermes LLMs via borrow-mode).
 
 ## Quick Start
 

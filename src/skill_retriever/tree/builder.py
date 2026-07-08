@@ -40,7 +40,7 @@ from .prompts import RECURSIVE_SPLIT_PROMPT, FIXED_CATEGORY_ASSIGNMENT_PROMPT
 console = Console()
 
 # Default output path
-DEFAULT_TREE_PATH = Path(__file__).parent.parent / "capability_tree" / "tree.yaml"
+DEFAULT_TREE_PATH = Path(__file__).parent.parent / "capability_tree" / "tree_10000.yaml"
 
 
 class TreeBuilder:

@@ -28,7 +28,9 @@ cp -r "$REPO_DIR"/plugin/* "$PLUGIN_DEST/"
 cp -r "$REPO_DIR"/src "$PLUGIN_DEST/"
 # Copy capability tree data
 mkdir -p "$PLUGIN_DEST/src/skill_retriever/capability_tree"
-cp -r "$REPO_DIR"/src/skill_retriever/capability_tree/* "$PLUGIN_DEST/src/skill_retriever/capability_tree/" 2>/dev/null || true
+for f in "$REPO_DIR"/src/skill_retriever/capability_tree/tree_10000.yaml "$REPO_DIR"/src/skill_retriever/capability_tree/tree_10000.html; do
+    [ -f "$f" ] && cp "$f" "$PLUGIN_DEST/src/skill_retriever/capability_tree/"
+done
 echo "  ✅ Files copied to $PLUGIN_DEST"
 
 # ── 2. Install Python deps ──
