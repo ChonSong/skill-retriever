@@ -146,12 +146,23 @@ def _on_pre_llm_call(*, user_message: str = "", **_kwargs) -> dict | None:
             )
             return None
 
-        # Format as natural-language hints
+        # Helper for source badge
+        _SOURCE_BADGE = {
+            "hermes": "🔒hermes",
+            "community": "🌐community",
+            "anthropic": "⭐anthropic",
+        }
+
+        # Format as natural-language hints with source + safety badges
         hints = []
         for skill in result.selected_skills[:5]:
             name = skill.get("name", skill.get("id", "unknown"))
             desc = skill.get("description", "")
-            hints.append(f"{len(hints)+1}. **{name}** — {desc}")
+            source = skill.get("source", "community")
+            safety = skill.get("safety", "clean")
+            badge = _SOURCE_BADGE.get(source, source)
+            safety_tag = "" if safety == "clean" else " ⚠️"
+            hints.append(f"{len(hints)+1}. **{name}** [{badge}{safety_tag}] — {desc}")
 
         if not hints:
             return None
