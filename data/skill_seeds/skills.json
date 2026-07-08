@@ -1,0 +1,4 @@
+{
+  "skills": [],
+  "_comment": "Metadata enrichment file. Populate with {id, github_url, stars, is_official, author} to enrich search results."
+}

@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "skill-retriever"
-version = "0.1.0"
-description = "AgentSkillOS-powered semantic skill retrieval for Hermes Agent. Pre-filters 200k+ skills to top-5 per query using capability tree + LLM gate."
+version = "0.2.0"
+description = "AgentSkillOS-powered semantic skill retrieval for Hermes Agent. Pre-filters 1,650+ skills to top-5 per query using capability tree + LLM gate."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [project.scripts]
-skill-retriever = "src.skill_retriever.__main__:main"
+skill-retriever = "skill_retriever.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -29,7 +29,11 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src", "plugin", "scripts"]
+packages = ["src/skill_retriever", "plugin"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/config.py" = "skill_retriever/_config_plugin.py"
+"src/skill_scanner.py" = "skill_retriever/_scanner_plugin.py"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

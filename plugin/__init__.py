@@ -49,7 +49,7 @@ def _get_scanner():
     """Lazy-load the skill scanner function."""
     global _scanner
     if _scanner is None:
-        from skill_scanner import scan_hermes_skills
+        from skill_retriever._scanner_plugin import scan_hermes_skills
         _scanner = scan_hermes_skills
     return _scanner
 

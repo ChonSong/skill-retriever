@@ -5,3 +5,4 @@ __pycache__/
 dist/
 
 data/
+!data/skill_seeds/skills.json

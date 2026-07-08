@@ -7,8 +7,8 @@ from pathlib import Path
 
 import litellm
 
-# Import from unified config
-from config import (
+# Import from unified config (bundled copy within the package)
+from skill_retriever._config_plugin import (
     SKILLS_DIR,
     PROJECT_ROOT,
     LLM_MODEL,

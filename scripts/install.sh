@@ -8,7 +8,6 @@ What it does:
     1. Copies plugin/ and src/ to ~/.hermes/plugins/skill-retriever/
     2. Installs Python dependencies into Hermes' venv
     3. Enables the plugin in ~/.hermes/config.yaml
-    4. Offers to build the initial skill index
 """
 
 set -e
@@ -27,6 +26,9 @@ echo "  1/4  Copying files..."
 mkdir -p "$PLUGIN_DEST"
 cp -r "$REPO_DIR"/plugin/* "$PLUGIN_DEST/"
 cp -r "$REPO_DIR"/src "$PLUGIN_DEST/"
+# Copy capability tree data
+mkdir -p "$PLUGIN_DEST/src/skill_retriever/capability_tree"
+cp -r "$REPO_DIR"/src/skill_retriever/capability_tree/* "$PLUGIN_DEST/src/skill_retriever/capability_tree/" 2>/dev/null || true
 echo "  ✅ Files copied to $PLUGIN_DEST"
 
 # ── 2. Install Python deps ──
@@ -36,7 +38,7 @@ VENV_PIP="$HERMES_HOME/hermes-agent/venv/bin/pip"
 if [ -f "$VENV_PIP" ]; then
     "$VENV_PIP" install chromadb litellm pyyaml python-dotenv rich --quiet 2>/dev/null && \
         echo "  ✅ Dependencies installed" || \
-        echo "  ⚠️  Some deps failed — check manually"
+        echo "  ⚠️  Some deps failed — check manually: pip install chromadb litellm pyyaml python-dotenv rich"
 else
     echo "  ⚠️  Hermes venv not found at $VENV_PIP"
     echo "     Install manually: pip install chromadb litellm pyyaml python-dotenv rich"
@@ -62,28 +64,23 @@ else
     echo "  ⚠️  Config not found at $CONFIG"
 fi
 
-# ── 4. Build skill index ──
+# ── 4. Verify installation ──
 echo ""
-echo "  4/4  Building skill index..."
-echo "  This scans your ~/.hermes/skills/ and builds the capability tree."
-echo "  First run may take a few minutes. Subsequent runs use cached index."
-echo ""
+echo "  4/4  Verifying imports..."
 cd "$PLUGIN_DEST"
 python3 -c "
 import sys
 sys.path.insert(0, 'src')
-from skill_scanner import scan_hermes_skills
-from skill_retriever import SkillRetriever
-
-print('  Scanning skills...')
-skills = scan_hermes_skills()
-print(f'  Found {len(skills)} skills')
-
-print('  Building index...')
-r = SkillRetriever()
-r.ensure_index(skills)
-print(f'  ✅ Index ready ({len(skills)} skills)')
-"
+try:
+    from skill_retriever import Searcher, SearchResult, TreeNode, Skill
+    from skill_retriever.cli import main
+    from skill_retriever.search.searcher import Searcher
+    from skill_scanner import scan_hermes_skills
+    print('  ✅ All core imports OK')
+except ImportError as e:
+    print(f'  ⚠️  Import failed: {e}')
+    print('  Some features may be unavailable until missing deps are installed.')
+" || echo "  ⚠️  Import check failed (non-fatal)"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -95,6 +92,4 @@ echo ""
 echo "   To disable:"
 echo "     SKILL_RETRIEVER_DISABLE=1"
 echo ""
-echo "   To rebuild index (after adding skills):"
-echo "     cd $PLUGIN_DEST && python3 -c 'from skill_retriever import SkillRetriever; SkillRetriever().build_index()'"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
