@@ -1,14 +1,8 @@
-"""Tests for skill_scanner.py — Hermes skill directory scanning."""
-
+"""Tests for scanner.py — Hermes skill directory scanning."""
 import tempfile
 from pathlib import Path
 
-# Ensure src/ is importable
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-# The scanner is bundled inside the skill_retriever package
-from skill_retriever._scanner_plugin import scan_hermes_skills, scan_skill_content
+from skill_retriever.scanner import scan_hermes_skills, scan_skill_content
 
 
 def test_scan_sample_skills():

@@ -133,7 +133,7 @@ Scans a directory of `SKILL.md` files (the AgentSkillOS corpus in `data/`). Extr
 
 ## Skill Scanner (Hermes)
 
-**File:** `src/skill_scanner.py`
+**File:** `scanner.py`
 
 Scans the user's local Hermes skill directories (`~/.hermes/skills/` and `~/.hermes/hermes-agent/skills/`). Used by the plugin for context — not for building the capability tree. Reads same `SKILL.md` format but returns flat list with category context.
 
@@ -172,7 +172,7 @@ skill-retriever/
 │   └── plugin.yaml      ← Plugin manifest
 ├── src/
 │   ├── config.py        ← Unified env-based configuration
-│   ├── skill_scanner.py ← Hermes skills scanner (for plugin)
+│   ├── scanner.py ← Hermes skills scanner (for plugin)
 │   └── skill_retriever/
 │       ├── __init__.py  ← Public API exports
 │       ├── __main__.py  ← CLI entry point

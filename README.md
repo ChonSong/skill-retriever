@@ -139,7 +139,7 @@ skill-retriever/
 │   │   ├── search/         # Searcher (multi-level LLM tree search)
 │   │   ├── tree/           # Tree builder, schema, prompts, scanner
 │   │   └── capability_tree/# Pre-built trees (YAML + HTML)
-│   └── _scanner_plugin.py  # Hermes skills scanner
+│   └── scanner.py  # Hermes skills scanner
 ├── data/                   # Skill corpus (gitignored)
 ├── tests/                  # 40 tests
 ├── scripts/install.sh      # One-click Hermes plugin install

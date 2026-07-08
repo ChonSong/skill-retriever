@@ -77,12 +77,12 @@ try:
     from skill_retriever import Searcher, SearchResult, TreeNode, Skill
     from skill_retriever.cli import main
     from skill_retriever.search.searcher import Searcher
-    from skill_scanner import scan_hermes_skills
-    print('  ✅ All core imports OK')
+    from skill_retriever.scanner import scan_hermes_skills
+    print('  All core imports OK')
 except ImportError as e:
-    print(f'  ⚠️  Import failed: {e}')
+    print(f'  Import failed: {e}')
     print('  Some features may be unavailable until missing deps are installed.')
-" || echo "  ⚠️  Import check failed (non-fatal)"
+" || echo "  Import check failed (non-fatal)"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

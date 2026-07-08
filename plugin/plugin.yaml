@@ -1,6 +1,20 @@
 name: skill-retriever
 version: 1.0.0
-description: "AgentSkillOS-powered semantic skill retrieval for Hermes. Pre-filters 200k+ skills to top-5 per query using capability tree + LLM gate. Borrow-mode uses existing Hermes LLMs — zero extra cost."
+description: "AgentSkillOS-powered semantic skill retrieval for Hermes. Pre-filters 1,200+ skills to top-5 per query using capability tree + LLM gate. Borrow-mode uses existing Hermes LLMs — zero extra cost."
 author: "Hermes Skill Retriever Contributors"
+kind: backend
 hooks:
   - pre_llm_call
+requires_env:
+  - key: SKILL_RETRIEVER_DISABLE
+    description: "Set to 1 to disable skill retrieval entirely"
+    default: ""
+  - key: SKILL_RETRIEVER_LLM_MODEL
+    description: "Override LLM model for skill retrieval gate (default: gpt-4o)"
+    default: ""
+  - key: SKILL_RETRIEVER_CACHE_DIR
+    description: "Override cache directory (default: ~/.hermes/skill-retriever-cache)"
+    default: ""
+  - key: SKILL_RETRIEVER_TREE_PATH
+    description: "Override capability tree path"
+    default: ""

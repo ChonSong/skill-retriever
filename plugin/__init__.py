@@ -27,18 +27,10 @@ from __future__ import annotations
 
 import logging
 import os
-import sys
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 _DISABLE_ENV = "SKILL_RETRIEVER_DISABLE"
-
-# Ensure src/ is importable when running as a Hermes plugin
-_plugin_dir = Path(__file__).parent.parent
-_src_dir = _plugin_dir / "src"
-if str(_src_dir) not in sys.path:
-    sys.path.insert(0, str(_src_dir))
 
 # Lazy-loaded singletons
 _searcher = None
@@ -49,7 +41,7 @@ def _get_scanner():
     """Lazy-load the skill scanner function."""
     global _scanner
     if _scanner is None:
-        from skill_retriever._scanner_plugin import scan_hermes_skills
+        from skill_retriever.scanner import scan_hermes_skills
         _scanner = scan_hermes_skills
     return _scanner
 
@@ -148,9 +140,9 @@ def _on_pre_llm_call(*, user_message: str = "", **_kwargs) -> dict | None:
 
         # Helper for source badge
         _SOURCE_BADGE = {
-            "hermes": "🔒hermes",
-            "community": "🌐community",
-            "anthropic": "⭐anthropic",
+            "hermes": "hermes",
+            "community": "community",
+            "anthropic": "anthropic",
         }
 
         # Format as natural-language hints with source + safety badges
@@ -161,8 +153,8 @@ def _on_pre_llm_call(*, user_message: str = "", **_kwargs) -> dict | None:
             source = skill.get("source", "community")
             safety = skill.get("safety", "clean")
             badge = _SOURCE_BADGE.get(source, source)
-            safety_tag = "" if safety == "clean" else " ⚠️"
-            hints.append(f"{len(hints)+1}. **{name}** [{badge}{safety_tag}] — {desc}")
+            safety_tag = "" if safety == "clean" else "!"
+            hints.append(f"{len(hints)+1}. **{name}** [{badge}{safety_tag}] \u2014 {desc}")
 
         if not hints:
             return None
