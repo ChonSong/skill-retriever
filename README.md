@@ -61,6 +61,24 @@ User Query
 └──────────────────────────────────────┘
 ```
 
+## Why not just use Hermes OOTB?
+
+Hermes already ships with skill discovery — every user-installed skill appears in the `<available_skills>` block of the system prompt. The LLM scans this flat list every turn and calls `skill_view()` when needed. For small sets it works fine.
+
+skill-retriever adds a **semantic retrieval layer** that transforms skill discovery from "read the catalog" into "search for what you need":
+
+| Dimension | Hermes OOTB | skill-retriever |
+|-----------|-------------|-----------------|
+| **Skill source** | Your local `~/.hermes/skills/` only (~100-200) | Community corpus (998) + Hermes skills (200) = **1,198 total** |
+| **Discovery** | Flat name+desc list in system prompt every turn | LLM-navigated taxonomy tree → top-5 relevant injected as hints |
+| **Token cost** | Every turn burns tokens for all skills, even irrelevant ones | Zero system prompt overhead — hints only in user message, only when found |
+| **Categorization** | Filesystem directory names | **10,000-category AgentSkillOS capability taxonomy** |
+| **Scales to** | ~200 skills before prompt bloat | 10K+ (tree handles it) |
+| **Latency per turn** | 0 (passive — always visible) | +1-3 cheap LLM calls for tree traversal (when it has results) |
+| **Community corpus** | No | Yes — 998 community skills alongside yours |
+
+**The difference:** OOTB gives you a flat skill catalog you read every turn. skill-retriever turns it into a **search engine** — describe what you need, the tree navigates to the right category, and only relevant suggestions appear. The tradeoff is a small latency cost per turn vs constant system prompt bloat.
+
 <p align="center">
   <img src="fig_framework.png" alt="AgentSkillOS Framework" style="max-width: 720px;">
 </p>
