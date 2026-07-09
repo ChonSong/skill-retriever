@@ -10,9 +10,9 @@ from pathlib import Path
 import litellm
 
 # ── Project paths ──
-MODULE_DIR = Path(__file__).parent
-PROJECT_ROOT = MODULE_DIR.parent  # src/ — this is fine, enrichment is optional
-CAPABILITY_TREE_PATH = MODULE_DIR / "capability_tree" / "tree_10000.yaml"
+MODULE_DIR = Path(__file__).parent  # src/skill_retriever/
+PROJECT_ROOT = MODULE_DIR  # package root for path resolution
+CAPABILITY_TREE_PATH = MODULE_DIR / "capability_tree" / "tree_10000_ship_safe.yaml"
 
 SKILL_RETRIEVER_CACHE_DIR = Path(
     os.environ.get("SKILL_RETRIEVER_CACHE_DIR",

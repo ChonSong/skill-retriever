@@ -31,5 +31,11 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/skill_retriever", "plugin"]
 
+[tool.hatch.build]
+include = [
+    "src/skill_retriever/**",
+    "plugin/**",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

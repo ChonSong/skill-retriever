@@ -1,0 +1,16 @@
+{
+  "name": "wordpress-performance-build",
+  "version": "1.0.0",
+  "description": "Build tools for WordPress Performance Best Practices",
+  "type": "module",
+  "scripts": {
+    "build": "tsx src/build.ts",
+    "validate": "tsx src/validate.ts",
+    "dev": "npm run build && npm run validate"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0"
+  }
+}

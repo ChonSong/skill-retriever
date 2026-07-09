@@ -1,0 +1,1777 @@
+[
+  {
+    "skill": "3d-web-experience",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "agent-evaluation",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "agent-md-refactor",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "agent-memory-systems",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "agent-tool-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ai-agents-architect",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ai-product",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ai-wrapper-product",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "algolia-search",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "algorithmic-art",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "article-extractor",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "artifacts-builder",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "assistant-ui",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "audiocraft-audio-generation",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "autogpt-agents",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "autonomous-agents",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "azure-functions",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "backend-development",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "brand-guidelines",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "browser-automation",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "browser-extension-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "building-native-ui",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "canvas-design",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "ceo-advisor",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "chroma",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "chrome-devtools",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache"
+    ]
+  },
+  {
+    "skill": "citation-management",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT License",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "clerk-auth",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "code-refactoring",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT",
+      "source=wshobson/agents"
+    ]
+  },
+  {
+    "skill": "code-review",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache",
+      "source=anthropics/claude-code"
+    ]
+  },
+  {
+    "skill": "code-simplifier",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "color-palette",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "computer-use-agents",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "content-creator",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "context-engineering",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "context-engineering-collection",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "conversation-memory",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "core-web-vitals",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "cosmosdb-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "crewai",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "crewai-multi-agent",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "cto-advisor",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "database-schema-designer",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "databases",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "debugging-wizard",
+    "resolved_license": "MIT",
+    "evidence": [
+      "body=MIT License"
+    ]
+  },
+  {
+    "skill": "dependency-updater",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "design-system-starter",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "developer-toolbox",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "devops",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "discord-bot-architect",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "document-illustrator",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "document-writer",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "email-gateway",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "email-systems",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "evaluating-code-models",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "evaluating-llms-harness",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "expo-api-routes",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "expo-cicd-workflows",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT License",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "expo-deployment",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "expo-dev-client",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "expo-tailwind-setup",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "faiss",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "file-uploads",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "firebase",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "frontend-design",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "gcp-cloud-run",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "generate-image",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "get-available-resources",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "gguf-quantization",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "gh-address-comments",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "gh-fix-ci",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "git-workflow",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache"
+    ]
+  },
+  {
+    "skill": "github-to-skills",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "google-gemini-embeddings",
+    "resolved_license": "MIT",
+    "evidence": [
+      "body=MIT License"
+    ]
+  },
+  {
+    "skill": "google-gemini-file-search",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "graphql",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "hubspot-integration",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "huggingface-accelerate",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "humanizer-zh",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "humanizer-zh-tw",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "hypothesis-generation",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "image-gen",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "inngest",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "instructor",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "interactive-portfolio",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "internal-comms",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "javascript-typescript",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT",
+      "source=wshobson/agents"
+    ]
+  },
+  {
+    "skill": "knowledge-distillation",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "langchain",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "langgraph",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "langsmith-observability",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "linear",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "literature-review",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "llama-cpp",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "llama-factory",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "logging-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "loki-mode",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "long-context",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "mamba-architecture",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "manimce-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "manimgl-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "market-research-reports",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "marketing-demand-acquisition",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "marketing-strategy-pmm",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "markitdown",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT",
+      "source=https://github.com/microsoft/markitdown"
+    ]
+  },
+  {
+    "skill": "mcp-builder",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "micro-saas-launcher",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "modal-serverless-gpu",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "model-merging",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "moe-training",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "motion",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "native-data-fetching",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nemo-curator",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "neon-postgres",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "nestjs-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nextjs-supabase-auth",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "nnsight-remote-interpretability",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "notebooklm",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "notion-template-business",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "nuxt",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nuxt-better-auth",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nuxt-content",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nuxt-modules",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nuxt-ui",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "nuxthub",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "oauth-integrations",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "open-source-contributions",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "openai-agents",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "peft-fine-tuning",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "performance",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "personal-tool-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "pinecone",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "plaid-fintech",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "primitives",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "prompt-caching",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "pylabrobot",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "pymc-bayesian-modeling",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache License, Version 2.0",
+      "->Apache"
+    ]
+  },
+  {
+    "skill": "python-packaging",
+    "resolved_license": "MIT",
+    "evidence": [
+      "body=MIT License"
+    ]
+  },
+  {
+    "skill": "pytorch-fsdp",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "pytorch-lightning",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "qdrant-vector-search",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "r3f-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "rag-engineer",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ralph-wiggum",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "react-native-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "react-patterns",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "reka-ui",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "research-grants",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "research-lookup",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "responsive-images",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "runtime",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "rwkv-architecture",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "salesforce-development",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "scholar-evaluation",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-brainstorming",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-critical-thinking",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-schematics",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-slides",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-visualization",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scientific-writing",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "scikit-learn",
+    "resolved_license": "BSD-3-Clause",
+    "evidence": [
+      "frontmatter.license=BSD-3-Clause license",
+      "->BSD-3"
+    ]
+  },
+  {
+    "skill": "scroll-experience",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "seaborn",
+    "resolved_license": "BSD-3-Clause",
+    "evidence": [
+      "frontmatter.license=BSD-3-Clause license",
+      "->BSD-3"
+    ]
+  },
+  {
+    "skill": "segment-cdp",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "sentencepiece",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "seo",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "seo-meta",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "sequential-thinking",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "serving-llms-vllm",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "sglang",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "shadcn-ui",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "shopify-apps",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "skill-creator",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "skill-manager",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "skypilot-multi-cloud-orchestration",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "slack-bot-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "slack-gif-creator",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "snowflake-platform",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "stable-diffusion-image-generation",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "statistical-analysis",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "streaming",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "streamlit-snowflake",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "supabase-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "supabase-postgres-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "swiftui-skills",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "system-info",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "tailwind-css-patterns",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "telegram-bot-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "telegram-mini-app",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "tensorrt-llm",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "terraform-skill",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache"
+    ]
+  },
+  {
+    "skill": "test-master",
+    "resolved_license": "MIT",
+    "evidence": [
+      "body=MIT License"
+    ]
+  },
+  {
+    "skill": "theme-factory",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "thread-list",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "three-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "threejs",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "tools",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "training-llms-megatron",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "trigger-dev",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ts-library",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "twilio-communications",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "ui-styling",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "unsloth",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "update",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "upgrading-expo",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "upstash-qstash",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "use-dom",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "valyu-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "venue-templates",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT license",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "vercel-deployment",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "vercel-react-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "viral-generator-builder",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "voice-agents",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "vue",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "vue-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "vueuse",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "web-artifacts-builder",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "web-frameworks",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "web-quality-audit",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "web-testing",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache"
+    ]
+  },
+  {
+    "skill": "webapp-testing",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=Complete terms in LICENSE.txt",
+      "license_file=LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "weights-and-biases",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "whisper",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "wordpress-performance-best-practices",
+    "resolved_license": "MIT",
+    "evidence": [
+      "frontmatter.license=MIT",
+      "->MIT"
+    ]
+  },
+  {
+    "skill": "workflow-automation",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "source=vibeship-spawner-skills (Apache 2.0)"
+    ]
+  },
+  {
+    "skill": "youtube-clipper",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "zapier-workflows",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE.txt"
+    ]
+  },
+  {
+    "skill": "zlibrary-to-notebooklm",
+    "resolved_license": "MIT",
+    "evidence": [
+      "license_content=MIT from LICENSE"
+    ]
+  },
+  {
+    "skill": "zod-4",
+    "resolved_license": "Apache-2.0",
+    "evidence": [
+      "frontmatter.license=Apache-2.0",
+      "->Apache"
+    ]
+  }
+]

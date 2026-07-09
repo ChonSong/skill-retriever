@@ -1,0 +1,12 @@
+{
+  "name": "developer-toolbox",
+  "description": "Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Includes 7 specialized agents with strong auto-discovery triggers. Use when: setting up development workflows, code reviews, debugging errors, writing tests, generating documentation, creating commits, or verifying builds. [Role] specialist. MUST BE USED when: [trigger 1], [trigger 2], [trigger 3]. Use PROACTIVELY for [broad task category].",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jeremy Dawes",
+    "email": "jeremy@jezweb.net"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/jezweb/claude-skills",
+  "keywords": []
+}

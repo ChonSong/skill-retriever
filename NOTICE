@@ -1,0 +1,44 @@
+Notice
+======
+
+This package includes third-party skill content under the following licenses.
+
+Bundled Community Skills
+------------------------
+230 community skill files are bundled under permissive open-source licenses:
+
+  - MIT          ~173 skills (171 MIT + 2 matching MIT)
+  - Apache-2.0   ~55 skills
+  - BSD-3-Clause ~2 skills
+
+See `skill_retriever/community_skills/LICENSES.json` for the per-skill
+license breakdown.
+
+Sources:
+  - AgentSkillOS (MIT): https://github.com/ynulihao/AgentSkillOS
+  - Vercel Labs Agent Skills (MIT): https://github.com/vercel-labs/agent-skills
+  - wshobson/agents (MIT): https://github.com/wshobson/agents
+  - vibeship-spawner-skills (Apache 2.0)
+
+Hermes Skills (references only)
+--------------------------------
+The capability tree references skill files from the Hermes Agent project
+(Apache 2.0 or MIT). These are not bundled in this package — they come
+from your local ~/.hermes/skills/ installation.
+
+Unlicensed Skills
+-----------------
+The tree_10000.yaml file references ~763 additional community skills that
+are NOT bundled because they carry no explicit open-source license. Per
+copyright law, unlicensed work is "all rights reserved" — you may use
+them locally but should not redistribute them.
+
+You can install them locally via:
+  skill-retriever install from-dir <path to local copy of AgentSkillOS data>
+
+Original Sources
+----------------
+The community skill corpus originates from the AgentSkillOS research paper
+(arXiv 2603.02176) and the HuggingFace dataset NPULH/agentskillos-benchmark.
+The HF dataset is available under research terms at:
+  https://huggingface.co/datasets/NPULH/agentskillos-benchmark
