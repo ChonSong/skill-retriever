@@ -12,7 +12,7 @@
 
 > **AgentSkillOS-powered semantic skill retrieval for Hermes Agent.**
 
-Pre-filters **439 skills** (230 permissively-licensed community + 209 Hermes skills) organized in a **10,000-category capability taxonomy** to the top-5 most relevant per query. The full corpus (1,197 skills) is available locally for opt-in use.
+Pre-filters **1,595 skills** (981 community + 179 Hermes + 435 indexed extras) organized in a **10,000-category capability taxonomy** to the top-5 most relevant per query. The embedding index was expanded from 219→1,595 entries on 2026-07-09 to include the full community corpus.
 
 ## Why a Skill Tree?
 
@@ -65,13 +65,13 @@ Hermes already ships with skill discovery — every user-installed skill appears
 
 skill-retriever adds **three layers** on top — passive awareness, proactive suggestion, and deep search — without removing any existing capability:
 
-| Dimension | Legacy `<available_skills>` (full dump) | Current `<available_skills>` (compact) | `skill_hints` plugin | `skill_retrieve` tool |
-|-----------|---------|---------|---------|---------|
-| **Content** | All 264 skills (name+desc) | Category names + counts | Top-5 relevant skill names | Full skill metadata |
-| **Token cost** | ~8K per turn 🔥 | ~1.2K per turn ✅ | ~50 tokens when triggered ✅ | 0 until called ✅ |
-| **When triggered** | Every turn | Every turn | Query-category match | Model decides |
-| **Discovery** | Scroll through flat list | See categories, infer contents | Proactive nudge | Deep semantic search |
-| **Gap filled** | You had to read everything | You see the map | You get suggestions | You find exactly what fits |
+| Dimension | Legacy `<available_skills>` (full dump) | Current `<available_skills>` (compact) | `skill_hints` plugin (basic) | `skill_hints` plugin (chains) | `skill_retrieve` tool |
+|-----------|---------|---------|---------|---------|---------|
+| **Content** | All 264 skills (name+desc) | Category names + counts | Top-3 relevant skill names | Full workflow chain + nudge + hints | Full skill metadata |
+| **Token cost** | ~8K per turn 🔥 | ~1.2K per turn ✅ | ~50 tokens when triggered ✅ | ~400–600 when triggered ✅ | 0 until called ✅ |
+| **When triggered** | Every turn | Every turn | Query-category match | Intent detected (build/review/refactor/deploy) | Model decides |
+| **Discovery** | Scroll through flat list | See categories, infer contents | Proactive nudge | Proactive workflow injection | Deep semantic search |
+| **Gap filled** | You had to read everything | You see the map | You get suggestions | You don't skip essential workflow steps | You find exactly what fits |
 
 **The old `skills_list` (dump all 264 skills in full) is vestigial** — replaced by the compact block. The three tiers together are cheaper and more effective than the original flat dump. The model pays a small fixed cost for the map, a tiny cost for suggestions, and zero for search until it chooses to dig deeper.
 
@@ -160,7 +160,47 @@ The system suggests before the model asks.
 **Gap it fills:** Proactive awareness. The model doesn't have to remember
 to search — the system pushes relevant skills when it detects a match.
 
-### Why All Three?
+### 3b. 🧩 `skill_hints` Intent-Aware Capability Chains (v0.2)
+
+```
+System pre-pends to user message:
+[Skill Capability Chain]
+These skills form a complete workflow for this type of task.
+  ★ writing-plans — architecture and phased planning before code
+  ★ subagent-driven-development — parallel delegation for multi-file builds
+  ▸ codebase-ingestion — index the repo for semantic code search
+  ▸ code-quality-audit — language-agnostic quality checks before commits
+...
+[Workflow note] For multi-file builds: plan, delegate parallel
+workstreams via delegate_task, then run a quality gate before committing.
+
+[Skill hints: gto-wizard-qa-loop, poker-platform-stack, web-app-factory]
+```
+
+**What:** An evolution of the `skill_hints` plugin that classifies user
+queries into high-level intents (`large_build`, `code_review`,
+`large_refactor`, `deploy`) and injects the full **workflow chain**
+of skills needed to execute that intent, plus a **behavioral nudge**
+bridging the selection→execution gap.
+
+**Why:** Semantic embedding alone can't surface `subagent-driven-development`
+from "build a web app" — the descriptions don't overlap. Pure keyword/embedding
+retrieval finds domain-relevant skills (e.g., `web-app-factory`) but misses the
+execution-layer workflow. Capability chains compensate by injecting the
+complete pipeline when the intent signal is strong enough.
+
+**When to use:** The user starts a session with a build, review, refactor,
+or deploy task. The plugin auto-detects intent and injects the chain.
+
+**Cost:** ~400–600 tokens for the chain block (only when intent detected).
+
+**Gap it fills:** The "missing a step" gap. Without it, a model building
+a web app might load `web-app-factory` and dive straight into coding,
+skipping `writing-plans` (architecture first), `subagent-driven-development`
+(parallel delegation), and `code-quality-audit` (quality gate before
+committing).
+
+### Why All Three (Plus Chains)?
 
 | Mechanism | Trigger | Latency | Token Cost | Purpose |
 |-----------|---------|---------|------------|---------|
