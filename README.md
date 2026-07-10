@@ -30,7 +30,7 @@ Skills are organized into a coarse-to-fine capability hierarchy. At scale, this 
 <p align="center">
   <img src="tree_10000_expand.gif" alt="10K Skill Tree Explored" height="360">
 </p>
-<sub><i>The 10,000-category capability tree — the structure our 1,200 skills are mapped into.</i></sub>
+<sub><i>The 10,000-category capability tree — the structure our 800+ ship-safe skills are mapped into.</i></sub>
 
 ## How It Works
 
@@ -410,7 +410,7 @@ skill-retriever/
 Package code: MIT. See [NOTICE](NOTICE) for third-party skill license
 attribution.
 
-Community skills: MIT / Apache-2.0 / BSD-3-Clause (230 bundled).
-~768 unlicensed skills not bundled — use locally only.
+Community skills: MIT / Apache-2.0 / BSD-3-Clause / CC-BY (622 bundled, up from 230).
+~1,356 unlicensed skills not bundled — use locally only.
 
 Built on [AgentSkillOS](https://github.com/ynulihao/AgentSkillOS) (MIT).
