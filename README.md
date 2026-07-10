@@ -12,7 +12,7 @@
 
 > **AgentSkillOS-powered semantic skill retrieval for Hermes Agent.**
 
-Pre-filters **1,595 skills** (981 community + 179 Hermes + 435 indexed extras) organized in a **10,000-category capability taxonomy** to the top-5 most relevant per query. The embedding index was expanded from 219→1,595 entries on 2026-07-09 to include the full community corpus.
+Pre-filters **2,000+ skills** (622 community + 179 Hermes + 1,860 indexed from AAS) organized in a **10,000-category capability taxonomy** to the top-5 most relevant per query. The corpus was expanded on 2026-07-10 with 392 permissively-licensed skills from [Agentic Awesome Skills](https://github.com/sickn33/agentic-awesome-skills) v14.1.0 (1,860 total AAS skills indexed, 392 shipped).
 
 ## Why a Skill Tree?
 

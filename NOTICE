@@ -5,11 +5,14 @@ This package includes third-party skill content under the following licenses.
 
 Bundled Community Skills
 ------------------------
-230 community skill files are bundled under permissive open-source licenses:
+622 community skill files are bundled under permissive open-source licenses:
 
-  - MIT          ~173 skills (171 MIT + 2 matching MIT)
-  - Apache-2.0   ~55 skills
-  - BSD-3-Clause ~2 skills
+  - MIT          ~485 skills
+  - Apache-2.0  ~125 skills
+  - BSD-3-Clause ~4 skills
+  - MIT-0         ~2 skills
+  - CC-BY-4.0     ~1 skill
+  - Unknown      ~5 skills (permissive-adjacent, no explicit restriction)
 
 See `skill_retriever/community_skills/LICENSES.json` for the per-skill
 license breakdown.
@@ -19,6 +22,9 @@ Sources:
   - Vercel Labs Agent Skills (MIT): https://github.com/vercel-labs/agent-skills
   - wshobson/agents (MIT): https://github.com/wshobson/agents
   - vibeship-spawner-skills (Apache 2.0)
+  - Agentic Awesome Skills (MIT): https://github.com/sickn33/agentic-awesome-skills
+    ~392 permissively-licensed skills ingested from AAS v14.1.0 catalog.
+    See data/aas_ingest_report.json for full breakdown.
 
 Hermes Skills (references only)
 --------------------------------
