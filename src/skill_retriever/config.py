@@ -81,13 +81,6 @@ def _probe_key(api_key: str, base_url: str | None, model: str, timeout: int = 5)
 def _discover_hermes_llm_config():
     """Read Hermes config.yaml + .env to auto-discover a working LLM config.
 
-    Priority chain:
-      1. SKILL_RETRIEVER_LLM_* env vars (explicit per-plugin config)
-      2. OPENAI_API_KEY matching a custom_providers entry → custom base_url
-      3. Hermes `model.provider` pooled keys against `model.base_url`
-      4. OPENAI_API_KEY / OPENAI_BASE_URL (generic fallback)
-      5. NOUS_API_KEY (legacy fallback)
-
     Returns (api_key, base_url, model) or (None, None, None).
     """
     try:
@@ -107,64 +100,40 @@ def _discover_hermes_llm_config():
         _load_dotenv_into(os.environ)
 
         env_openai_key = os.environ.get("OPENAI_API_KEY", "").strip()
+        env_openai_url = os.environ.get("OPENAI_BASE_URL", "").strip()
 
-        # ── 1. Custom provider match ──
         custom_providers = cfg.get("custom_providers", []) or []
-        if env_openai_key and isinstance(custom_providers, list):
-            for cp in custom_providers:
-                cp_key = (cp.get("api_key") or "").strip()
-                cp_url = (cp.get("base_url") or "").strip()
-                if cp_key and cp_url and env_openai_key == cp_key:
-                    # Probe first — don't trust .env keys blindly
-                    if _probe_key(cp_key, cp_url, default_model, timeout=5):
-                        return cp_key, cp_url, default_model
-                    break  # custom provider key didn't work, fall through
 
-        # ── 2. Provider-specific pooled keys (from .env) ──
-        norm = provider.upper().replace("-", "_").replace(".", "_")
-        candidate_keys: list[tuple[str, str]] = []
-        for k, v in sorted(os.environ.items(), reverse=True):
-            if k.startswith(f"{norm}_API_KEY") and v.strip():
-                candidate_keys.append((v.strip(), k))
-
-        if candidate_keys and base_url:
-            for key_val, _ in candidate_keys:
-                if _probe_key(key_val, base_url, default_model, timeout=5):
-                    return key_val, base_url, default_model
-            # Probe failed for all — use the first one as best-effort
-            return candidate_keys[0][0], base_url, default_model
-
-        # ── 3. Match custom_providers entry by model.provider name ──
+        # Find the custom_providers entry matching model.provider
+        matched_cp = None
         if provider and isinstance(custom_providers, list):
             prov_slug = provider.split(":")[-1].strip().lower()
             for cp in custom_providers:
                 cp_name = (cp.get("name") or "").strip().lower()
                 cp_slug = cp_name.replace(" ", "").replace("_", "").replace("-", "")
                 if cp_slug and (cp_slug == prov_slug or cp_slug in prov_slug or prov_slug in cp_slug):
-                    cp_key = (cp.get("api_key") or "").strip()
-                    cp_url = (cp.get("base_url") or "").strip()
-                    if cp_key and cp_url and _probe_key(cp_key, cp_url, default_model, timeout=5):
-                        return cp_key, cp_url, default_model
+                    matched_cp = cp
+                    break
 
-        # ── 4. OPENAI_API_KEY / OPENAI_BASE_URL (generic fallback, probed) ──
+        # ── 2. Matched custom_providers entry (key + base_url) ──
+        if matched_cp:
+            cp_key = (matched_cp.get("api_key") or "").strip()
+            cp_url = (matched_cp.get("base_url") or "").strip()
+            if cp_key and cp_url:
+                return cp_key, cp_url, default_model
+
+        # ── 4. OPENAI_API_KEY env var + OPENAI_BASE_URL ──
         if env_openai_key:
-            oai_url = os.environ.get("OPENAI_BASE_URL", base_url)
-            if _probe_key(env_openai_key, oai_url or "https://api.openai.com/v1", default_model, timeout=5):
-                return env_openai_key, oai_url, default_model
+            return env_openai_key, (env_openai_url or base_url), default_model
 
-        # ── 5. NOUS_API_KEY fallback: pair with a working custom_providers base_url ──
+        # ── 5. NOUS_API_KEY + first available base_url ──
         nous = os.environ.get("NOUS_API_KEY", "").strip()
-        if nous and isinstance(custom_providers, list):
-            for cp in custom_providers:
-                cp_url = (cp.get("base_url") or "").strip()
-                cp_key = (cp.get("api_key") or "").strip()
-                if cp_url and _probe_key(nous, cp_url, default_model, timeout=5):
-                    return nous, cp_url, default_model
-            # No working base_url found — return with first available
-            for cp in custom_providers:
-                cp_url = (cp.get("base_url") or "").strip()
-                if cp_url:
-                    return nous, cp_url, default_model
+        if nous:
+            if isinstance(custom_providers, list):
+                for cp in custom_providers:
+                    cp_url = (cp.get("base_url") or "").strip()
+                    if cp_url:
+                        return nous, cp_url, default_model
             return nous, base_url, default_model
 
         return None, None, None
