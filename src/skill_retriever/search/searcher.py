@@ -584,9 +584,14 @@ class Searcher:
         """Call LLM and return response."""
         self._llm_calls += 1
 
+        # litellm needs a provider prefix for custom endpoints
+        model = self.model
+        if self.base_url and "/" not in model:
+            model = f"openai/{model}"
+
         try:
             response = litellm.completion(
-                model=self.model,
+                model=model,
                 messages=[{"role": "user", "content": prompt}],
                 api_key=self.api_key,
                 api_base=self.base_url,

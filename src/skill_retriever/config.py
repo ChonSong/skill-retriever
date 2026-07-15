@@ -134,14 +134,39 @@ def _discover_hermes_llm_config():
             # Probe failed for all — use the first one as best-effort
             return candidate_keys[0][0], base_url, default_model
 
-        # ── 3. OPENAI_API_KEY / OPENAI_BASE_URL (generic fallback) ──
+        # ── 3. Match custom_providers entry by model.provider name ──
+        # When model.provider is "custom:longcat" and there's a matching
+        # custom_providers entry, use its api_key + base_url. This takes
+        # priority over the generic OPENAI_API_KEY fallback because the
+        # env key may be for a different provider entirely.
+        if provider and isinstance(custom_providers, list):
+            prov_slug = provider.split(":")[-1].strip().lower()
+            for cp in custom_providers:
+                cp_name = (cp.get("name") or "").strip().lower()
+                cp_slug = cp_name.replace(" ", "").replace("_", "").replace("-", "")
+                if cp_slug and (cp_slug == prov_slug or cp_slug in prov_slug or prov_slug in cp_slug):
+                    cp_key = (cp.get("api_key") or "").strip()
+                    cp_url = (cp.get("base_url") or "").strip()
+                    if cp_key and cp_url:
+                        return cp_key, cp_url, default_model
+
+        # ── 4. OPENAI_API_KEY / OPENAI_BASE_URL (generic fallback) ──
         if env_openai_key:
             oai_url = os.environ.get("OPENAI_BASE_URL", base_url)
             return env_openai_key, oai_url, default_model
 
-        # ── 4. NOUS_API_KEY (legacy fallback) ──
+        # ── 5. NOUS_API_KEY (legacy fallback, lowest priority) ──
         nous = os.environ.get("NOUS_API_KEY", "").strip()
         if nous:
+            # Find a custom_providers base_url to pair with
+            if isinstance(custom_providers, list):
+                prov_slug = provider.split(":")[-1].strip().lower() if provider else ""
+                for cp in custom_providers:
+                    cp_name = (cp.get("name") or "").strip().lower()
+                    cp_slug = cp_name.replace(" ", "").replace("_", "").replace("-", "")
+                    cp_url = (cp.get("base_url") or "").strip()
+                    if cp_url and (not prov_slug or cp_slug == prov_slug):
+                        return nous, cp_url, default_model
             return nous, base_url, default_model
 
         return None, None, None
