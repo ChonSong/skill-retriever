@@ -127,6 +127,14 @@ def compose_skills(query: str) -> Optional[list[dict]]:
             text = "\n".join(lines[1:-1] if lines[-1].strip() == "```" else lines[1:])
 
         bundle = json.loads(text)
+        # Auto-log each skill before returning (lightweight: one file write each)
+        from .skill_usage_logger import log_skill_view
+        for item in bundle:
+            log_skill_view(
+                item.get("name", "?"),
+                item.get("load_as", "consider"),
+                item.get("confidence", "high"),
+            )
         return bundle
     except Exception as e:
         import logging
