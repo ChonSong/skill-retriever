@@ -600,7 +600,9 @@ class Searcher:
                 num_retries=LLM_MAX_RETRIES,
                 timeout=SEARCH_TIMEOUT,
             )
-            return response.choices[0].message.content
+            msg = response.choices[0].message
+            # Reasoning models (LongCat-2.0, etc.) return content in reasoning_content
+            return msg.content or msg.reasoning_content or "[]"
         except Exception as e:
             console.print(f"[red]LLM call failed: {e}[/red]")
             return "[]"
