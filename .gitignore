@@ -3,6 +3,20 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 dist/
+build/
+.venv/
+*.egg
+.DS_Store
 
+# IDE
+.vscode/
+.idea/
+
+# Data trees (only seeds.json is tracked)
 data/
 !data/skill_seeds/skills.json
+!data/skill_top500/
+
+# Logs and local state
+*.log
+.hermes/

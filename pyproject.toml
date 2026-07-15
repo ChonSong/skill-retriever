@@ -4,23 +4,22 @@ build-backend = "hatchling.build"
 
 [project]
 name = "skill-retriever"
-version = "0.2.0"
-description = "AgentSkillOS-powered semantic skill retrieval for Hermes Agent. Pre-filters 1,200+ skills to top-5 per query using capability tree + LLM gate."
+version = "0.3.0"
+description = "Composer-based skill retrieval for Hermes Agent. Pre-filters capability tree to flat index, single LLM call curates dynamic skill bundles per query."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Hermes Skill Retriever Contributors" }]
+authors = [{ name = "Sean Oliver" }]
 
 dependencies = [
-    "chromadb>=0.4.0",
     "litellm>=1.0.0",
     "pyyaml>=6.0.0",
-    "python-dotenv>=1.0.0",
     "rich>=13.0.0",
+    "python-dotenv>=1.0.0",
 ]
 
 [project.scripts]
-skill-retriever = "skill_retriever.cli:main"
+skill-retriever = "skill_retriever.cli_compose:main"
 
 [project.optional-dependencies]
 dev = [
