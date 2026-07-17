@@ -6,6 +6,9 @@
 3. Returns bundle as JSON
 
 This replaces the hardcoded capability chains in the pre_llm_call hook.
+
+Closed loop: injects "previously useful for similar queries" context from
+skill-usage.jsonl, so the composer learns from past success/failure.
 """
 import json
 import re
@@ -22,6 +25,11 @@ from skill_retriever.config import (
 from concurrent.futures import ThreadPoolExecutor
 
 FLAT_INDEX_PATH = Path.home() / ".hermes/skill-retriever-cache/flat_index.json"
+USAGE_LOG_PATH = Path.home() / ".hermes/state/skill-usage.jsonl"
+
+# Minimum quality signals for a skill to be considered high-quality
+# (skills missing these get a 0.5x score penalty)
+QUALITY_SIGNALS = ("has_steps", "has_verification", "has_pitfalls")
 
 # Prompt template — loaded once (use {{ }} to escape literal braces)
 SKILL_COMPOSER_PROMPT = """You are a skill curator for an AI agent. Given a user query and a list of available skills, choose the best workflow.
@@ -33,9 +41,13 @@ SKILL_COMPOSER_PROMPT = """You are a skill curator for an AI agent. Given a user
 - Prefer class-level umbrella skills over narrow ones
 - Skip skills with low relevance — don't pad the bundle
 - If no skills match, return []
+- If a skill was previously useful for a similar query, prioritize it
 
 ## Output format
 [{{"name": "skill-name", "load_as": "must", "reason": "...", "confidence": "high"}}]
+
+## Previously useful for similar queries
+{previously_useful}
 
 ## Available Skills
 {skill_list}
@@ -55,21 +67,108 @@ def _flat_index() -> list[dict]:
         return json.load(f)
 
 
-def _pre_filter(skills: list[dict], query: str, top_k: int = 50) -> list[str]:
+def _load_usage_history(window_hours: int = 720) -> dict:
+    """Load recent usage history from skill-usage.jsonl.
+
+    Returns dict: skill_name -> {"useful": int, "irrelevant": int, "total": int}
+    Only loads entries from the last `window_hours` (default 30 days).
+    """
+    if not USAGE_LOG_PATH.exists():
+        return {}
+    import time
+    cutoff = time.time() - (window_hours * 3600)
+    history = {}
+    try:
+        with open(USAGE_LOG_PATH) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    entry = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if entry.get("ts", 0) < cutoff:
+                    continue
+                name = entry.get("skill_name", "?")
+                if name not in history:
+                    history[name] = {"useful": 0, "irrelevant": 0, "harmful": 0, "total": 0}
+                history[name]["total"] += 1
+                signal = entry.get("outcome_signal")
+                if signal in history[name]:
+                    history[name][signal] += 1
+    except Exception:
+        pass
+    return history
+
+
+def _find_previously_useful(history: dict, query: str, top_k: int = 5) -> list[dict]:
+    """Find skills that were useful for similar queries recently.
+
+    Uses keyword matching against the query to find relevant past-successful skills.
+    """
+    tokens = set(re.findall(r'\w+', query.lower()))
+    if not tokens:
+        return []
+
+    # Score each skill by: usefulness_ratio × keyword_overlap
+    scored = []
+    for name, stats in history.items():
+        if stats["useful"] == 0:
+            continue
+        ratio = stats["useful"] / max(stats["total"], 1)
+        # Name token overlap with query
+        name_tokens = set(re.findall(r'\w+', name.lower()))
+        overlap = len(tokens & name_tokens)
+        if overlap == 0:
+            continue
+        score = ratio * overlap
+        scored.append((score, name, stats))
+
+    scored.sort(key=lambda x: -x[0])
+    return [
+        {"name": name, "useful_count": stats["useful"], "total_count": stats["total"]}
+        for _, name, stats in scored[:top_k]
+    ]
+
+
+def _pre_filter(skills: list[dict], query: str, top_k: int = 50,
+                  history: Optional[dict] = None) -> list[str]:
     """Cheap keyword pre-filter: match query tokens against skill name+description.
+
+    Applies quality floor penalty for skills missing steps/verification/pitfalls.
+    Previously-useful skills get a boost.
 
     Returns top_k skill entries as formatted strings for the LLM prompt.
     """
     tokens = set(re.findall(r'\w+', query.lower()))
     scored = []
     for s in skills:
-        text = f"{s['name']} {' '.join(s.get('tags', []))} {s['description']}".lower()
+        name = s.get("name", "")
+        desc = s.get("description", "")
+        tags = s.get("tags", [])
+        text = f"{name} {' '.join(tags)} {desc}".lower()
         score = sum(1 for t in tokens if t in text)
-        if score > 0:
-            scored.append((score, s))
+
+        if score == 0:
+            continue
+
+        # Quality floor penalty: skills missing key signals lose half their score
+        quality_flags = s.get("_quality", {})
+        missing_quality = sum(1 for sig in QUALITY_SIGNALS if not quality_flags.get(sig))
+        if missing_quality >= 2:
+            score *= 0.5
+
+        # Previously useful boost
+        if history and name in history:
+            h = history[name]
+            if h["useful"] > 0:
+                usefulness_ratio = h["useful"] / max(h["total"], 1)
+                score *= (1.0 + usefulness_ratio)
+
+        scored.append((score, s))
 
     scored.sort(key=lambda x: x[0], reverse=True)
-    # Format for prompt
     return [
         f"- {s['name']}: {s.get('description', '')[:150]} [tags: {', '.join(s.get('tags', []))}]"
         for _, s in scored[:top_k]
@@ -79,6 +178,7 @@ def _pre_filter(skills: list[dict], query: str, top_k: int = 50) -> list[str]:
 def compose_skills(query: str) -> Optional[list[dict]]:
     """Curate a skill bundle for a user query.
 
+    Injects previously-useful skill context from usage history.
     Returns list of skill bundle entries, or None on error.
     """
     import litellm
@@ -87,13 +187,26 @@ def compose_skills(query: str) -> Optional[list[dict]]:
     if not skills:
         return None
 
-    # Step 1: cheap pre-filter
-    candidates = _pre_filter(skills, query)
+    # Load usage history for feedback
+    history = _load_usage_history()
+    previously_useful = _find_previously_useful(history, query)
+
+    # Step 1: cheap pre-filter (with quality floor + history boost)
+    candidates = _pre_filter(skills, query, history=history)
     if not candidates:
         return None
 
+    # Build previously-useful section
+    previously_useful_text = "(none)"
+    if previously_useful:
+        previously_useful_text = "\n".join(
+            f"- {s['name']} (useful {s['useful_count']}/{s['total_count']}recent similar queries)"
+            for s in previously_useful
+        )
+
     # Step 2: single LLM call
     prompt = SKILL_COMPOSER_PROMPT.format(
+        previously_useful=previously_useful_text,
         skill_list="\n".join(candidates),
         query=query,
     )
