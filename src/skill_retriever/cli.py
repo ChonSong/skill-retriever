@@ -7,6 +7,7 @@ Usage:
     python -m skill_retriever info
     python -m skill_retriever install community [--dest PATH]
     python -m skill_retriever install from-dir <source_dir>
+    python -m skill_retriever health
     python -m skill_retriever audit [--json]
 """
 
@@ -242,6 +243,13 @@ def _install_from_directory(source: Path, dest: Path) -> int:
     return 0
 
 
+def cmd_health(args: argparse.Namespace) -> int:
+    """Check skill composer health and diagnose failures."""
+    from skill_retriever.watchdog import health_check
+    print(health_check())
+    return 0
+
+
 def cmd_audit(args: argparse.Namespace) -> int:
     """Audit installed skills for licensing information."""
     from skill_retriever.config import SKILLS_DIR
@@ -408,6 +416,10 @@ def build_parser() -> argparse.ArgumentParser:
                            help="Directory path when source='from-dir'")
     p_install.add_argument("--dest", "-d", help="Target directory (default: SKILLS_DIR from env)")
     p_install.set_defaults(func=cmd_install)
+
+    # health
+    p_health = sub.add_parser("health", help="Check skill composer health and diagnose failures")
+    p_health.set_defaults(func=cmd_health)
 
     # audit
     p_audit = sub.add_parser("audit", help="Audit installed skills for licensing information")
