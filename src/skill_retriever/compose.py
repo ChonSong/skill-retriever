@@ -267,6 +267,15 @@ def bundle_to_hint_block(bundle: list[dict]) -> str:
         "These skills are curated for this query.",
         "Call skill_view('<name>') to load each one.",
         "",
+        "COMPLIANCE REQUIRED:",
+        "1. You MUST call skill_view() for all ★ must skills BEFORE starting work.",
+        "2. For ▸ should skills: load if domain-relevant.",
+        "3. For · consider skills: load only if genuinely useful.",
+        "4. After responding, log each loaded skill's usefulness:",
+        "   log_skill_view('skill-name', outcome_signal='useful') if it appeared in your answer",
+        "   log_skill_view('skill-name', outcome_signal='irrelevant') if not used",
+        "   log_skill_view('skill-name', outcome_signal='harmful') if it misled you",
+        "",
     ]
     for item in bundle:
         name = item.get("name", "")
